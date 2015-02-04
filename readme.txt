@@ -7,3 +7,4 @@ Creating a new branch is quick AND simple.
 Git test stash.
 Git I am busy.
 Git How do you do!
+hi!
