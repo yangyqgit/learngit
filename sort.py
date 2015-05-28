@@ -1,5 +1,7 @@
 import random
 import datetime
+import sys
+
 def sort_insertion(L):
 	'''
 	insertion sort
@@ -15,8 +17,15 @@ def sort_insertion(L):
 
 
 if(__name__ == '__main__'):
+	if(len(sys.argv) < 2):
+		print '\nplease specify the size of list!\n'
+		sys.exit()
 	L=[]
-	for i in range(0,10):
+	size = int(sys.argv[1])
+	if(size <= 0):
+		print '\nThe size of list must greater than zero!\n'
+		sys.exit()
+	for i in range(0,size):
 		L.append(random.randrange(0,10000))
 	print '---------------------------------------'
 	print 'unsort:',L
