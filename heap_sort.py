@@ -16,6 +16,9 @@ def max_heapify(L, i, N):
 	L[i] = temp
 
 def build_max_heap(L):
+	'''
+	当用数组表示存储了n个元素的堆时,叶子结点的下标是floor(n/2) + 1,floor(n/2) + 2,...,n
+	'''
 	for i in range(size / 2 - 1, -1, -1):
 		max_heapify(L, i, size)
 
