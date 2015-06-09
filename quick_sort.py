@@ -21,12 +21,29 @@ def partition(L, b, e):
 	L[i] = temp
 	return i
 
+def random_partition(L, b, e):
+	r = random.randrange(b, e)
+	L[e],L[r] = L[r],L[e]
+	j = b - 1
+	for i in range(b, e):
+		if(L[i] <= L[e]):
+			j += 1
+			L[i],L[j] = L[j],L[i]
+	j += 1
+	L[j],L[e] = L[e],L[j]
+	return j
+
 def quick_sort(L, b, e):
 	if(b < e):
 		i = partition(L, b, e)
 		quick_sort(L, b, i - 1)
 		quick_sort(L, i + 1, e)
 
+def random_quick_sort(L, b, e):
+	if(b < e):
+		i = random_partition(L, b, e)
+		random_quick_sort(L, b, i - 1)
+		random_quick_sort(L, i + 1, e)
 
 if(__name__ == '__main__'):
 	if(len(sys.argv) < 2):
@@ -39,14 +56,16 @@ if(__name__ == '__main__'):
 	L=[]
 	for i in range(0,size):
 		L.append(random.randrange(0,10000))
-
+	M = L
 	print '---------------------------------------'
 	print 'unsort:',L
-	start = datetime.datetime.now()
+	time1 = datetime.datetime.now()
 	quick_sort(L, 0, size - 1)
-	end = datetime.datetime.now()
+	time2 = datetime.datetime.now()
+	random_quick_sort(M, 0, size - 1)
+	time3 = datetime.datetime.now()
 	print '---------------------------------------'
 	print 'sorted:',L
 	print '---------------------------------------'
-	print 'time escape:',(end - start).microseconds, 'microseconds'
+	print 'time escape:',(time2 - time1).microseconds,(time3 - time2).microseconds, 'microseconds'
 	print '---------------------------------------'
